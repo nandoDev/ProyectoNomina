@@ -1,0 +1,75 @@
+﻿    
+@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<main ng-app="ngmodule" ng-controller="ngcontroller">
+        <div class="row">
+            <form class="col s12" ng-submit="CrearEmpleado()">
+                <div class="input-field col s3">
+                    <input id="cedula" type="text" class="validate" ng-model="SelectedNroDocumento" autocompleto>
+                    <input id="id" name="cedula" type="hidden" value="" ng-model="SelectedNroDocumento">
+                    <label for="cedula" ng-class="ClassActive">Cédula</label>
+                </div>
+                <div class="input-field  col s3">
+                    <input id="nombre" name="nombre" type="text" class="validate" ng-model="SelectedNombre">
+                    <label for="nombre" ng-class="ClassActive">Nombre</label>
+                </div>
+                <div class="input-field col s3">
+                    <input id="salarioMensual" name="salarioMensual" type="text" ng-model="SelectedSalarioMensual">
+                    <label for="salariomensual" ng-class="ClassActive">Salario Mensual</label>
+                </div>
+               <div class="col s3">
+                    <label>Identificador de Nómina</label>
+                    <select id="identificadorNomina"  ng-model="SelectedIdNomina" ng-init="SelectedIdNomina = SelectedIdNomina|| SelectorsIdNomina[0]" ng-options="S for S in SelectorsIdNomina">
+                    </select>
+                </div>
+                <div class="row"></div>
+                <div class="row"></div>
+                <div class="row">
+                    <a class="waves-effect waves-light btn" ng-click="getUniqueEmpleado()" ><i class="material-icons left">search</i>Buscar</a>
+                    <a class="waves-effect waves-light btn" ng-click="CleanFields()"><i class="material-icons left">clear_all</i>Limpiar</a>
+                </div>
+                <div class="row">
+                    <button type="submit" class="waves-effect waves-light btn"><i class="material-icons left">supervisor_account</i>Agregar empleado</button>
+                    
+                    <a class="waves-effect waves-light btn" ng-click="EditarEmpleado()"><i class="material-icons left">edit</i>Editar Empleado</a>
+                    
+                    <a class="waves-effect waves-light btn"><i class="material-icons left">delete</i>Borrar Empleado</a>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <a class="waves-effect waves-light btn" ng-click="CargarEmpleados()"><i class="material-icons left">reorder</i>Ver todos</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <table class="striped" id="tablaMedicamento">
+                    <tr>
+                        <th>Cédula</th>
+                        <th>Nombre</th>
+                        <th>Salario mensual</th>
+                        <th>Indentificador nómina</th>
+                        <th>Acción</th>
+                    </tr>
+                    <tr ng-repeat="a in Empleados">
+                        <td>{{a.cedula}}</td>
+                        <td>{{a.nombre}}</td>
+                        <td>{{a.salarioMensual}}</td>
+                        <td>{{a.identificadorNomina}}</td>
+                        <td>
+                            <a ng-click="EditarEmpleado()"><i class="fa fa-fw fa-edit"></i></a>
+                            <a ng-click="BorrarEmpleado()"><i class="fa fa-fw fa-times"></i></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+ </main>
+
+   
