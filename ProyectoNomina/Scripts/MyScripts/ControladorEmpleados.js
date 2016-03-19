@@ -7,24 +7,9 @@ var app = angular.module('ngmodule', []);
 app.service('ngservice', function ($http) {
     //The function to read all employers
 
-
-
     this.getEmpleados = function () {    
         var res = $http.get("/api/Empleados/GetEmpleados");
         return res;
-    };
-
-    //La función lee los registros basados en el filtro 
-    //La función lee todos los registros si ningún valor es ingresado
-    this.getfilteredData = function (filter1, filter2) {
-        var res;
-        if (filter2.length == 0) {
-            res = $http.get("/api/NominaProfesores/GetNominaProfesoresFiltro/" + filter1);
-            return res;
-        } else {
-            res = $http.get("/api/NominaProfesores/GetNominaProfesoresFiltro/" + filter1 + "/" + filter2);
-            return res;
-        }
     };
 
     this.getUniqueEmpleado = function (filter) {
@@ -174,7 +159,7 @@ app.controller('ngcontroller', function ($scope,  ngservice, OperacionFiltrado )
 
     $scope.SelectorsPeriodo = ["012016", "022016", "032016"];
     $scope.SelectorsIdNomina = ["N-E", "N-A", "N-I", "N-D"];
-    $scope.SelectorsTipoContrato = ["Investigador", "Por-Asignatura"];
+    
     $scope.filtroDocumento = "";
     $scope.SelectedPeriodo = "";
     $scope.SelectedTipoContrato = "";
@@ -211,7 +196,6 @@ app.controller('ngcontroller', function ($scope,  ngservice, OperacionFiltrado )
     function CrearEmpleado() {
         CargarDatosEmpleado();
         console.log($scope.DatosCrearEmpleado);
-       
         var promise = ngservice.crearEmpleado($scope.DatosCrearEmpleado);
         promise.then(function (resp) {
             alert ("Empleado agregado exitosamente!")
@@ -235,8 +219,6 @@ app.controller('ngcontroller', function ($scope,  ngservice, OperacionFiltrado )
         });
     };
 
-
-
     //Function que limpia los campos y la tabla
     function CleanFields() {
         $scope.Empleados = null;
@@ -250,7 +232,7 @@ app.controller('ngcontroller', function ($scope,  ngservice, OperacionFiltrado )
     };
 
      //Function para cargar registros de nómina según número de documento
-    function getUniqueEmpleado() {
+     function getUniqueEmpleado() {
         var promise = ngservice.getUniqueEmpleado($scope.SelectedNroDocumento);
         promise.then(function (resp) {
             $scope.Empleado = resp.data;

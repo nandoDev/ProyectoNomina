@@ -229,9 +229,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\AllowCrossSiteJsonAttribute.cs" />
+    <Compile Include="Controllers\AsientosContablesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\EmpleadosController.cs" />
+    <Compile Include="Controllers\TiposDeduccionController.cs" />
+    <Compile Include="Controllers\TiposIngresoController.cs" />
+    <Compile Include="Controllers\TransaccionesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1105,7 +1108,11 @@
     <Content Include="Scripts\materialize.js" />
     <Content Include="Scripts\materialize.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\MyScripts\AngularLogic.js" />
+    <Content Include="Scripts\MyScripts\ControladorAsientosContables.js" />
+    <Content Include="Scripts\MyScripts\ControladorEmpleados.js" />
+    <Content Include="Scripts\MyScripts\ControladorTiposDeduccion.js" />
+    <Content Include="Scripts\MyScripts\ControladorTiposIngreso.js" />
+    <Content Include="Scripts\MyScripts\ControladorTransacciones.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\site.js" />

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoNomina.Models
 {
@@ -10,7 +11,7 @@ namespace ProyectoNomina.Models
             this.AsientosContables = new List<AsientosContables>();
             this.Transacciones = new List<Transacciones>();
         }
-
+        [Key]
         public int idEmpleado { get; set; }
         public string cedula { get; set; }
         public string nombre { get; set; }
