@@ -11,6 +11,9 @@ namespace ProyectoNomina.Models.Mapping
             this.HasKey(t => t.idTiposIngreso);
 
             // Properties
+            this.Property(t => t.idTiposIngreso)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+
             this.Property(t => t.nombre)
                 .IsRequired()
                 .HasMaxLength(20);

@@ -13,13 +13,15 @@ namespace ProyectoNomina.Models.Mapping
             // Properties
             this.Property(t => t.tipoTransaccion)
                 .IsRequired()
-                .HasMaxLength(5);
+                .IsFixedLength()
+                .HasMaxLength(1);
 
             this.Property(t => t.periodoNomina)
                 .IsRequired()
                 .HasMaxLength(10);
 
             this.Property(t => t.estado)
+                .IsRequired()
                 .IsFixedLength()
                 .HasMaxLength(1);
 
@@ -39,10 +41,10 @@ namespace ProyectoNomina.Models.Mapping
             this.HasRequired(t => t.Empleado)
                 .WithMany(t => t.Transacciones)
                 .HasForeignKey(d => d.idEmpleado);
-            this.HasOptional(t => t.TiposDeduccion)
+            this.HasRequired(t => t.TiposDeduccion)
                 .WithMany(t => t.Transacciones)
                 .HasForeignKey(d => d.idTiposDeduccion);
-            this.HasOptional(t => t.TiposIngreso)
+            this.HasRequired(t => t.TiposIngreso)
                 .WithMany(t => t.Transacciones)
                 .HasForeignKey(d => d.idTiposIngreso);
 

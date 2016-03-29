@@ -14,12 +14,16 @@ namespace ProyectoNomina.Controllers
 {
     public class TiposIngresoController : ApiController
     {
-        private ProyectoNominaDBContext db = new ProyectoNominaDBContext();
-
-        // GET: api/TiposIngreso
-        public IQueryable<TiposIngreso> GetTiposIngreso()
+        ProyectoNominaDBContext db;
+        public TiposIngresoController()
         {
-            return db.TiposIngreso;
+            db = new ProyectoNominaDBContext();
+        }
+
+        // GET: api/TiposDeduccion
+        public IEnumerable<TiposIngreso> GetTiposIngreso()
+        {
+            return db.TiposIngreso.AsEnumerable();
         }
 
         // GET: api/TiposIngreso/5

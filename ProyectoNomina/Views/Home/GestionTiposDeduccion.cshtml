@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "GestionTiposDeduccion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<main ng-app="ngmoduleTiposDeduccion" ng-controller="ngcontrollerTiposDeduccion">
+    <h4>Gestión de tipos de deducción</h4>
+    <div class="row">
+
+        <form class="col s12">
+           <div class="input-field col s3">
+                <input id="nombre" type="text" class="validate">
+                <label for="nombre">Nombre</label>
+            </div>
+            <p class="col s3">
+                <br>
+                <input type="checkbox" id="dependedesalario" />
+                <label for="dependedesalario">Depende de salario</label>
+                &nbsp;
+                <input type="checkbox" id="activo" />
+                <label for="activo">Activo</label>
+            </p>
+            <div class="input-field col s2">
+                <input id="porcentaje" type="text" class="validate">
+                <label for="porcentaje">Porcentaje</label>
+            </div>
+            <br>
+
+            <a class="waves-effect waves-light btn"><i class="material-icons left">search</i>Buscar</a>
+            <a class="waves-effect waves-light btn" ng-click="CleanFields()"><i class="material-icons left">clear_all</i>Limpiar</a>
+            <div class="row"></div>
+            <div class="row">
+                <a class="waves-effect waves-light btn"><i class="material-icons left">supervisor_account</i>Crear</a>
+                <a class="waves-effect waves-light btn"><i class="material-icons left">edit</i>Editar</a>
+                <a class="waves-effect waves-light btn"><i class="material-icons left">delete</i>Borrar</a>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <a class="waves-effect waves-light btn" ng-click="CargarTiposDeduccion()"><i class="material-icons left">reorder</i>Ver todos</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <table class="striped" id="tablaMedicamento">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Depende de salario</th>
+                    <th>Estado</th>
+                    <th>Porcentaje</th>
+                    <th>Acción</th>
+                </tr>
+                <tr ng-repeat="a in TiposDeduccion">
+                    <td>{{a.nombre}}</td>
+                    <td>{{a.dependeDeSalario}}</td>
+                    <td>{{a.estado}}</td>
+                    <td>{{a.porcentaje}}</td>
+                    <td>
+                        <a ng-click="EditarTipoDeduccion()"><i class="fa fa-fw fa-edit"></i></a>
+                        <a ng-click="BorrarTipoIngreso()"><i class="fa fa-fw fa-times"></i></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    
+</main>

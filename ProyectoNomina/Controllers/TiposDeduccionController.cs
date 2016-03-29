@@ -14,12 +14,16 @@ namespace ProyectoNomina.Controllers
 {
     public class TiposDeduccionController : ApiController
     {
-        private ProyectoNominaDBContext db = new ProyectoNominaDBContext();
+        ProyectoNominaDBContext db;
+        public TiposDeduccionController()
+        {
+            db = new ProyectoNominaDBContext();
+        }
 
         // GET: api/TiposDeduccion
-        public IQueryable<TiposDeduccion> GetTiposDeduccion()
+        public IEnumerable<TiposDeduccion> GetTiposDeduccion()
         {
-            return db.TiposDeduccion;
+            return db.TiposDeduccion.AsEnumerable();
         }
 
         // GET: api/TiposDeduccion/5

@@ -7,13 +7,13 @@ namespace ProyectoNomina.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class first : IMigrationMetadata
+    public sealed partial class Primeramigración : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(first));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Primeramigración));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603171545337_first"; }
+            get { return "201603270019535_Primera migración"; }
         }
         
         string IMigrationMetadata.Source

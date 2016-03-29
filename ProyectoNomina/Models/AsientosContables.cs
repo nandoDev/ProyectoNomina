@@ -6,6 +6,7 @@ namespace ProyectoNomina.Models
 {
     public partial class AsientosContables
     {
+
         [Key]
         public int idAsiento { get; set; }
         public string descripcion { get; set; }

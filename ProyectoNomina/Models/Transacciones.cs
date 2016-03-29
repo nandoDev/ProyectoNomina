@@ -6,12 +6,11 @@ namespace ProyectoNomina.Models
 {
     public partial class Transacciones
     {
-
         [Key]
         public int idTransaccion { get; set; }
         public int idEmpleado { get; set; }
-        public Nullable<int> idTiposIngreso { get; set; }
-        public Nullable<int> idTiposDeduccion { get; set; }
+        public int idTiposIngreso { get; set; }
+        public int idTiposDeduccion { get; set; }
         public string tipoTransaccion { get; set; }
         public System.DateTime fecha { get; set; }
         public string periodoNomina { get; set; }

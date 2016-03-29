@@ -238,9 +238,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603171545337_first.cs" />
-    <Compile Include="Migrations\201603171545337_first.Designer.cs">
-      <DependentUpon>201603171545337_first.cs</DependentUpon>
+    <Compile Include="Migrations\201603270019535_Primera migración.cs" />
+    <Compile Include="Migrations\201603270019535_Primera migración.Designer.cs">
+      <DependentUpon>201603270019535_Primera migración.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AsientosContables.cs" />
@@ -255,6 +255,7 @@
     <Compile Include="Models\TiposDeduccion.cs" />
     <Compile Include="Models\TiposIngreso.cs" />
     <Compile Include="Models\Transacciones.cs" />
+    <Compile Include="Models\transaccionesDTO.cs" />
     <Compile Include="Models\Usuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -1134,11 +1135,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Home\GestionEmpleados.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603171545337_first.resx">
-      <DependentUpon>201603171545337_first.cs</DependentUpon>
-    </EmbeddedResource>
+    <Content Include="Views\Home\GestionTiposIngreso.cshtml" />
+    <Content Include="Views\Home\GestionTiposDeduccion.cshtml" />
+    <Content Include="Views\Home\GestionTransacciones.cshtml" />
+    <Content Include="Views\Home\GestionConsultas.cshtml" />
+    <Content Include="Views\Home\GestionAsientosContables.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1154,6 +1155,11 @@
     <Folder Include="Content\img\" />
     <Folder Include="Content\themes\" />
     <Folder Include="Content\ui-lightness\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201603270019535_Primera migración.resx">
+      <DependentUpon>201603270019535_Primera migración.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

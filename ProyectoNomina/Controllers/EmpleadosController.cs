@@ -10,6 +10,7 @@ using System.Net;
 
 using System.Windows.Forms;
 using System.Data.Entity;
+using System.Web.Mvc;
 
 namespace ProyectoNomina.Controllers
 {
@@ -50,7 +51,7 @@ namespace ProyectoNomina.Controllers
         //[ResponseType(typeof(Empleados))]
 
 
-        [AcceptVerbs("PUT", "POST")]
+        [System.Web.Http.AcceptVerbs("PUT", "POST")]
         public IHttpActionResult CrearEmpleado([FromBody]Empleados value1)
         {
             if (!ModelState.IsValid)
@@ -78,7 +79,7 @@ namespace ProyectoNomina.Controllers
             return Ok();
         }
 
-        [AcceptVerbs("PUT", "POST")]
+        [System.Web.Http.AcceptVerbs("PUT", "POST")]
         public IHttpActionResult EditarEmpleado([FromBody]Empleados empleado)
         {
             if (!ModelState.IsValid)

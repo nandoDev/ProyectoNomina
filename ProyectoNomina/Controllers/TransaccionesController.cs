@@ -14,12 +14,35 @@ namespace ProyectoNomina.Controllers
 {
     public class TransaccionesController : ApiController
     {
-        private ProyectoNominaDBContext db = new ProyectoNominaDBContext();
+        
 
-        // GET: api/Transacciones
-        public IQueryable<Transacciones> GetTransacciones()
+        ProyectoNominaDBContext db;
+        public TransaccionesController()
         {
-            return db.Transacciones;
+            db = new ProyectoNominaDBContext();
+        }
+
+        // GET: api/EmpleadosController
+        public IEnumerable<transaccionesDTO>GetTransaccionesEmmpleado(int value1)
+        {
+            List<transaccionesDTO> transaccionesView = new List<transaccionesDTO>();
+            var Result = db.Transacciones.Where(a => a.idEmpleado == value1).Include(r => r.Empleado);
+
+            foreach (var transaccion in Result)
+            {
+                transaccionesDTO transaccionView = new transaccionesDTO();
+                transaccionView.idTransaccion= transaccion.idTransaccion;
+                transaccionView.cedulaEmpleado = transaccion.Empleado.cedula;
+                transaccionView.nombreEmpleado = transaccion.Empleado.nombre;
+                transaccionView.tipoTransaccion = transaccion.tipoTransaccion;
+                transaccionView.tipoIngreso = transaccion.TiposIngreso.nombre;
+                transaccionView.tipoDeduccion = transaccion.TiposDeduccion.nombre;
+                transaccionView.periodoNomina = transaccion.periodoNomina;
+                transaccionView.fecha = transaccion.fecha;
+                transaccionView.montoTransaccion = transaccion.monto;
+                transaccionesView.Add(transaccionView);
+            }
+            return transaccionesView.AsEnumerable();
         }
 
         // GET: api/Transacciones/5

@@ -18,7 +18,7 @@
             <nav>
                 <div class="nav-wrapper">
                     <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-                    <a href="#" class="brand-logo center">Modulo Nómina</a>
+                    <h3 class="brand-logo center">Módulo de Nómina</h3>
                     <ul class="right">
                         <li><a href="#">Salir</a></li>
                     </ul>
@@ -26,11 +26,11 @@
             </nav>
             <ul id="slide-out" class="side-nav fixed">
                     <li class="active"><a href="@Url.Action("GestionEmpleados", "Home")">Empleados</a></li>
-                    <li><a href="tiposdeingresos.html">Tipos de ingresos</a></li>
-                    <li><a href="tiposdededucciones.html">Tipos de deducciones</a></li>
-                    <li><a href="registrodetransacciones.html">Registro de transacciones</a></li>
-                    <li><a href="consultas.html">Consultas</a></li>
-                    <li><a href="asientoscontables.html">Asientos contables</a></li>
+                    <li class="active"><a href="@Url.Action("GestionTiposIngreso", "Home")">Tipos de ingresos</a></li>
+                    <li class="active"><a href="@Url.Action("GestionTiposDeduccion", "Home")">Tipos de deducciones</a></li>
+                    <li class="active"><a href="@Url.Action("GestionTransacciones", "Home")">Registro de transacciones</a></li>
+                    <li class="active"><a href="@Url.Action("GestionConsultas", "Home")">Consultas</a></li>
+                    <li class="active"><a href="@Url.Action("GestionAsientosContables", "Home")">Asientos contables</a></li>
 </ul>
         </header>
 
@@ -42,9 +42,13 @@
         <script src="/Scripts/bootstrap.js"></script>
         <script src="/Scripts/angular.min.js"></script>
         <script src="~/Scripts/MyScripts/ControladorEmpleados.js"></script>
+        <script src="~/Scripts/MyScripts/ControladorTiposDeduccion.js"></script>
+        <script src="~/Scripts/MyScripts/ControladorTiposIngreso.js"></script>
     
         <script type="text/javascript" src="/Scripts/materialize.min.js"></script>
         <script type="text/javascript" src="/Scripts/main.js"></script>
+
+         <script type="text/javascript" src=""></script>
     </body>
 </html>
 

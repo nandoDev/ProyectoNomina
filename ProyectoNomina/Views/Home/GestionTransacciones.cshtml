@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "GestionTransacciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main ng-app="ngmoduleTiposIngreso" ng-controller="ngcontrollerTiposIngreso">
+    <h4>Gestión de transacciones</h4>
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s3">
+                    <input id="cedula" type="text" class="validate" ng-model="SelectedNroDocumento" autocompleto>
+                    <input id="id" name="cedula" type="hidden" value="" ng-model="SelectedNroDocumento">
+                    <label for="cedula" ng-class="ClassActive">Cédula</label>
+                    <a class="waves-effect waves-light btn"><i class="material-icons left">search</i>Buscar empleado</a>
+                </div>
+                
+                    <div class="input-field col s3">
+                        <input id="nombre" name="nombre" type="text" class="validate" ng-model="SelectedNombre" readonly="readonly">
+                        <label for="nombre" ng-class="ClassActive">Nombre empleado</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <input id="salarioMensual" name="salarioMensual" type="text" ng-model="SelectedSalarioMensual" readonly="readonly">
+                        <label for="salariomensual" ng-class="ClassActive">Salario empleado</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <select id="periodoNomina" ng-model="SelectedPeriodoNomina" ng-init="SelectedPeriodoNomina = SelectedPeriodoNomina|| SelectorsPeriodoNomina[0]" ng-options="S for S in SelectorsPeriodoNomina"></select>
+                        <label for="periodoNomina">Período de Nómina</label>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="input-field col s3">
+                    <input type="radio" class="with-gap" id="tipoTransaccionIngreso" name="tipoTransaccion" value="I" />
+                    <label for="tipoTransaccionIngreso">Ingreso</label>
+                    <input type="radio" class="with-gap" id="tipoTransaccionDeduccion" name="tipoTransaccion" value="D" />
+                    <label for="tipoTransaccionDeduccion">Deducción</label>
+                </div>
+                <div class="input-field col s3">
+                    <select id="Ingreso" ng-model="SelectedIngreso" ng-disabled="true" ng-init="SelectedIngreso = SelectedIngreso|| SelectorsIngreso[1]" ng-options="S for S in SelectorsIngreso"></select>
+                    <label>Tipo de ingreso</label>
+                </div>
+                <div class="input-field col s3">
+                    <select id="Deduccion" ng-model="SelectedDeduccion" ng-disabled="false" ng-init="SelectedDeduccion = SelectedDeduccion|| SelectorsDeduccion[1]" ng-options="S for S in SelectorsDeduccion"></select>
+                    <label>Tipo de deducción</label>
+                </div>
+                <div class="input-field col s3">
+                    <input type="date" class="datepicker" id="Fecha" ng-model="SelectedFecha" ng-init="SelectedFecha = Fecha">
+                    @*<label ng-class="ClassActive">Fecha</label>*@
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s3">
+                    <input id="monto" name="estado" type="text" class="validate" ng-model="SelectedMonto">
+                    <label for="monto" ng-class="ClassActive">Monto transacción</label>
+                </div>
+            </div>
+            <div class="row">
+                <a class="waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>Crear</a>
+                <a class="waves-effect waves-light btn"><i class="material-icons left">edit</i>Editar</a>
+                <a class="waves-effect waves-light btn"><i class="material-icons left">delete</i>Borrar</a>
+                <a class="waves-effect waves-light btn" ng-click="CleanFields()"><i class="material-icons left">clear_all</i>Limpiar campos</a>
+            </div>
+        </form>
+    <div class="row">
+        <div class="col s12">
+            <a class="waves-effect waves-light btn" ng-click="CargarTiposIngreso()"><i class="material-icons left">clear_all</i>Ver todos</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <table class="striped" id="tablaTransacciones">
+                <tr>
+                    <th>Id de transacción</th>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Tipo de transacción</th>
+                    <th>Tipo de ingreso</th>
+                    <th>Tipo de deducción</th>
+                    <th>Período de nómina</th>
+                    <th>Fecha</th>
+                    <th>Monto de transacción</th>
+                    <th>Acción</th>
+                </tr>
+                <tr ng-repeat="a in TiposIngreso">
+                    <td>{{a.idTransaccion}}</td>
+                    <td>{{a.cedula}}</td>
+                    <td>{{a.nombre}}</td>
+                    <td>{{a.tipoTransaccion}}</td>
+                    <td>{{a.tipoIngreso}}</td>
+                    <td>{{a.tipoDeduccion}}</td>
+                    <td>{{a.periodoNomina}}</td>
+                    <td>{{a.fecha}}</td>
+                    <td>{{a.montoTransaccion}}</td>
+                    <td>
+                        <a ng-click="EditarTransaccion()"><i class="fa fa-fw fa-edit"></i></a>
+                        <a ng-click="BorrarTransaccion()"><i class="fa fa-fw fa-times"></i></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</main>
+
+

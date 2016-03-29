@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectoNomina.Models
 {
@@ -10,8 +11,11 @@ namespace ProyectoNomina.Models
         {
             this.Transacciones = new List<Transacciones>();
         }
+
         [Key]
         public int idTiposDeduccion { get; set; }
+
+        [Index(IsUnique=true)]
         public string nombre { get; set; }
         public bool dependeDeSalario { get; set; }
         public string estado { get; set; }

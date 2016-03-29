@@ -12,7 +12,7 @@ namespace ProyectoNomina.Models
         }
 
         public ProyectoNominaDBContext()
-            : base("Name=ProyectoNominaDBContext")
+            : base("Name=NominaDBContext")
         {
         }
 
@@ -23,14 +23,14 @@ namespace ProyectoNomina.Models
         public DbSet<Transacciones> Transacciones { get; set; }
         public DbSet<Usuarios> Usuarios { get; set; }
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Configurations.Add(new AsientosContablesMap());
-        //    modelBuilder.Configurations.Add(new EmpleadosMap());
-        //    modelBuilder.Configurations.Add(new TiposDeduccionMap());
-        //    modelBuilder.Configurations.Add(new TiposIngresoMap());
-        //    modelBuilder.Configurations.Add(new TransaccionesMap());
-        //    modelBuilder.Configurations.Add(new UsuariosMap());
-        //}
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new AsientosContablesMap());
+            modelBuilder.Configurations.Add(new EmpleadosMap());
+            modelBuilder.Configurations.Add(new TiposDeduccionMap());
+            modelBuilder.Configurations.Add(new TiposIngresoMap());
+            modelBuilder.Configurations.Add(new TransaccionesMap());
+            modelBuilder.Configurations.Add(new UsuariosMap());
+        }
     }
 }
