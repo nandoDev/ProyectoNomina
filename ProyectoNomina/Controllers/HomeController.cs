@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoNomina.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,9 @@ namespace ProyectoNomina.Controllers
 {
     public class HomeController : Controller
     {
+        ProyectoNominaDBContext db = new ProyectoNominaDBContext();
+
+
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
@@ -39,7 +43,8 @@ namespace ProyectoNomina.Controllers
         public ActionResult GestionTransacciones()
         {
             ViewBag.Title = "Gestión de transacciones";
-
+            ViewBag.TiposIngreso = new SelectList(db.TiposIngreso, "idTiposIngreso", "nombre");
+            ViewBag.TiposDeduccion = new SelectList(db.TiposDeduccion, "idTiposDeduccion", "nombre");
             return View();
         }
 

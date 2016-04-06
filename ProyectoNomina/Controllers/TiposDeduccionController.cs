@@ -21,9 +21,18 @@ namespace ProyectoNomina.Controllers
         }
 
         // GET: api/TiposDeduccion
-        public IEnumerable<TiposDeduccion> GetTiposDeduccion()
+        public IHttpActionResult GetTiposDeduccion()
         {
-            return db.TiposDeduccion.AsEnumerable();
+
+            var TiposDeduccion =
+                            from w in db.TiposDeduccion
+                            select new { w.idTiposDeduccion,
+                                         w.nombre,
+                                         w.dependeDeSalario,
+                                         w.estado,
+                                         w.porcentaje};
+
+            return Ok(TiposDeduccion);
         }
 
         // GET: api/TiposDeduccion/5

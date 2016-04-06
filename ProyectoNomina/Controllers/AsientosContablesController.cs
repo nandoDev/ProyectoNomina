@@ -24,15 +24,22 @@ namespace ProyectoNomina.Controllers
 
         // GET: api/AsientosContables/5
         [ResponseType(typeof(AsientosContables))]
-        public IHttpActionResult GetAsientosContables(int id)
+        [System.Web.Http.Route("api/AsientosContables/GetAsientosPeriodo/{value1}")]
+        public IHttpActionResult GetAsientosPeriodo(string value1)
         {
-            AsientosContables asientosContables = db.AsientosContables.Find(id);
-            if (asientosContables == null)
-            {
-                return NotFound();
-            }
 
-            return Ok(asientosContables);
+            var Result = db.AsientosContables.Select(u => new {
+                u.idAsiento,
+                u.descripcion,
+                u.Empleado.cedula,
+                u.Empleado.nombre,
+                u.cuenta,
+                u.periodoNomina,
+                u.tipoMovimiento,
+                u.fechaAsiento,
+                u.monto
+            }).Where(u=>u.periodoNomina==value1);
+            return Ok(Result);
         }
 
         // PUT: api/AsientosContables/5

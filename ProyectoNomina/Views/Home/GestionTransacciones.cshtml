@@ -4,19 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main ng-app="ngmoduleTiposIngreso" ng-controller="ngcontrollerTiposIngreso">
+<main ng-app="ngmoduleTransacciones" ng-controller="ngcontrollerTransacciones">
     <h4>Gestión de transacciones</h4>
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s3">
                     <input id="cedula" type="text" class="validate" ng-model="SelectedNroDocumento" autocompleto>
-                    <input id="id" name="cedula" type="hidden" value="" ng-model="SelectedNroDocumento">
+                    <input id="id" name="cedula" type="hidden" value="" ng-model="SelectedIdEmpleado">
                     <label for="cedula" ng-class="ClassActive">Cédula</label>
-                    <a class="waves-effect waves-light btn"><i class="material-icons left">search</i>Buscar empleado</a>
                 </div>
-                
                     <div class="input-field col s3">
-                        <input id="nombre" name="nombre" type="text" class="validate" ng-model="SelectedNombre" readonly="readonly">
+                        <input id="nombre" name="nombre" type="text" ng-model="SelectedNombre" readonly="readonly">
                         <label for="nombre" ng-class="ClassActive">Nombre empleado</label>
                     </div>
                     <div class="input-field col s3">
@@ -24,30 +22,45 @@
                         <label for="salariomensual" ng-class="ClassActive">Salario empleado</label>
                     </div>
                     <div class="input-field col s3">
-                        <select id="periodoNomina" ng-model="SelectedPeriodoNomina" ng-init="SelectedPeriodoNomina = SelectedPeriodoNomina|| SelectorsPeriodoNomina[0]" ng-options="S for S in SelectorsPeriodoNomina"></select>
+                        <select id="periodoNomina" ng-model="SelectedPeriodo" ng-init="SelectedPeriodo = SelectedPeriodo|| SelectorsPeriodo[0]" ng-options="S for S in SelectorsPeriodo"></select>
                         <label for="periodoNomina">Período de Nómina</label>
                     </div>
                 </div>
             <div class="row">
-                <div class="input-field col s3">
-                    <input type="radio" class="with-gap" id="tipoTransaccionIngreso" name="tipoTransaccion" value="I" />
-                    <label for="tipoTransaccionIngreso">Ingreso</label>
-                    <input type="radio" class="with-gap" id="tipoTransaccionDeduccion" name="tipoTransaccion" value="D" />
-                    <label for="tipoTransaccionDeduccion">Deducción</label>
+                    <div class="input-field col s3">
+                        <input type="radio" class="with-gap" id="tipoTransaccionIngreso" ng-model="SelectedTipoTransaccion" ng-change="SetDisabledIngresoAndDeduccion()"  name="tipoTransaccion" value="I" checked />
+                        <label for="tipoTransaccionIngreso">Ingreso</label> 
+                        <input type="radio" class="with-gap" id="tipoTransaccionDeduccion" ng-model="SelectedTipoTransaccion" ng-change="SetDisabledIngresoAndDeduccion()"  name="tipoTransaccion" value="D" />
+                        <label for="tipoTransaccionDeduccion">Deducción</label>
+                    </div>
+                    <div class="input-field col s3" >
+                      <select class="browser-default" name="Ingreso" id="Ingreso" ng-model="SelectedIngreso" ng-disabled = "DisabledIngreso">
+                            @foreach (var item in ViewBag.TiposIngreso)
+                            {
+                                <option value=@item.Value>
+                                    @item.Text
+                                </option>
+                            }
+                        </select>
+                        <label ng-class="ClassActiveTiposTransaccion">Tipo de ingreso</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <select class="browser-default" name="Deduccion" id="Deduccion" ng-model="SelectedDeduccion" ng-disabled = "DisabledDeduccion">
+                            @foreach (var item in ViewBag.TiposDeduccion)
+                            {
+                                <option value=@item.Value>
+                                   @item.Text
+                                </option>
+                            }
+                        </select>
+                        <label ng-class="ClassActiveTiposTransaccion">Tipo de deducción</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <input type="date" class="datepicker" id="Fecha" ng-model="SelectedFecha" ng-init="SelectedFecha = Fecha">
+                        @*<label ng-class="ClassActive">Fecha</label>*@
+                    </div>
                 </div>
-                <div class="input-field col s3">
-                    <select id="Ingreso" ng-model="SelectedIngreso" ng-disabled="true" ng-init="SelectedIngreso = SelectedIngreso|| SelectorsIngreso[1]" ng-options="S for S in SelectorsIngreso"></select>
-                    <label>Tipo de ingreso</label>
-                </div>
-                <div class="input-field col s3">
-                    <select id="Deduccion" ng-model="SelectedDeduccion" ng-disabled="false" ng-init="SelectedDeduccion = SelectedDeduccion|| SelectorsDeduccion[1]" ng-options="S for S in SelectorsDeduccion"></select>
-                    <label>Tipo de deducción</label>
-                </div>
-                <div class="input-field col s3">
-                    <input type="date" class="datepicker" id="Fecha" ng-model="SelectedFecha" ng-init="SelectedFecha = Fecha">
-                    @*<label ng-class="ClassActive">Fecha</label>*@
-                </div>
-            </div>
+           
             <div class="row">
                 <div class="input-field col s3">
                     <input id="monto" name="estado" type="text" class="validate" ng-model="SelectedMonto">
@@ -63,7 +76,7 @@
         </form>
     <div class="row">
         <div class="col s12">
-            <a class="waves-effect waves-light btn" ng-click="CargarTiposIngreso()"><i class="material-icons left">clear_all</i>Ver todos</a>
+            <a class="waves-effect waves-light btn" ng-click="getTransaccionesEmpleado()"><i class="material-icons left">clear_all</i>Ver transacciones de empleado</a>
         </div>
     </div>
     <div class="row">
@@ -81,10 +94,10 @@
                     <th>Monto de transacción</th>
                     <th>Acción</th>
                 </tr>
-                <tr ng-repeat="a in TiposIngreso">
+                <tr ng-repeat="a in TransaccionesEmpleado">
                     <td>{{a.idTransaccion}}</td>
-                    <td>{{a.cedula}}</td>
-                    <td>{{a.nombre}}</td>
+                    <td>{{a.cedulaEmpleado}}</td>
+                    <td>{{a.nombreEmpleado}}</td>
                     <td>{{a.tipoTransaccion}}</td>
                     <td>{{a.tipoIngreso}}</td>
                     <td>{{a.tipoDeduccion}}</td>
@@ -100,5 +113,6 @@
         </div>
     </div>
 </main>
+
 
 

@@ -5,8 +5,9 @@ var app = angular.module('ngmodule', []);
  
 //Declaring Service
 app.service('ngservice', function ($http) {
-    //The function to read all employers
 
+
+    //The function to read all employers
     this.getEmpleados = function () {    
         var res = $http.get("/api/Empleados/GetEmpleados");
         return res;

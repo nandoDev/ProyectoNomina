@@ -23,10 +23,12 @@ namespace ProyectoNomina.Controllers
         }
 
         // GET: api/EmpleadosController
-        public IEnumerable<transaccionesDTO>GetTransaccionesEmmpleado(int value1)
+        [ResponseType(typeof(transaccionesDTO))]
+        [System.Web.Http.Route("api/Transacciones/GetTransaccionesEmpleado/{value1}")]
+        public IEnumerable<transaccionesDTO>GetTransaccionesEmmpleado(string value1)
         {
             List<transaccionesDTO> transaccionesView = new List<transaccionesDTO>();
-            var Result = db.Transacciones.Where(a => a.idEmpleado == value1).Include(r => r.Empleado);
+            var Result = db.Transacciones.Where(a => a.Empleado.cedula == value1).Include(r => r.Empleado);
 
             foreach (var transaccion in Result)
             {

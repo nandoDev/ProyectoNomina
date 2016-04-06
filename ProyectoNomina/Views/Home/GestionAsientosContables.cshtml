@@ -4,5 +4,61 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>GestionAsientosContables</h2>
+<main ng-app="ngmoduleAsientos" ng-controller="ngcontrollerAsientos">
+    <h4>Gestión de asientos contables</h4>
+    <form class="col s12">
+        <div class="row">
+            <div class="input-field col s3">
+                <select id="periodoNomina" ng-model="SelectedPeriodo" ng-init="SelectedPeriodo = SelectedPeriodo|| SelectorsPeriodo[0]" ng-options="S for S in SelectorsPeriodo"></select>
+                <label for="periodoNomina">Período de Nómina</label>
+            </div>
+            <div class="input-field col s3">
+                <a class="waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>Generar asientos</a>
+            </div>
+        </div>
+        <div class="row">
+            <br>
+        </div>
+        <div class="row">
+            <br>
+        </div>
+            <div class="row">
+                <a class="waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>Enviar asientos a contabilidad</a>
+            </div>
+     </form>
+        <div class="row">
+        <div class="col s12">
+            <table class="striped" id="tablaTransacciones">
+                <tr>
+                    <th>Id de asiento</th>
+                    <th>Descripcion</th>
+                    <th>Documento empleado</th>
+                    <th>Cuenta contable</th>
+                    <th>Periodo de nómina</th>
+                    <th>Tipo de movimiento</th>
+                    <th>Fecha</th>
+                    <th>Monto de asiento</th>
+                    <th>Acción</th>
+                </tr>
+                <tr ng-repeat="a in AsientosPeriodo">
+                    <td>{{a.idAsiento}}</td>
+                    <td>{{a.descripcion}}</td>
+                    <td>{{a.cedula}}</td>
+                    <td>{{a.cuenta}}</td>
+                    <td>{{a.periodoNomina}}</td>
+                    <td>{{a.tipoMovimiento}}</td>
+                    <td>{{a.fechaAsiento}}</td>
+                    <td>{{a.monto}}</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</main>
+
+
+
+
+
+
 

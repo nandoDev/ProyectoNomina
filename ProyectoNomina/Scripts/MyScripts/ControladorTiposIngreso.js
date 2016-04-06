@@ -12,8 +12,6 @@ appI.service('ngservice', function ($http) {
         return res;
     };
 
-
-
     this.getDataAutoComplete = function () {
         var res;
         res = $http.get("/api/Empleados/GetDataAutoComplete/");
@@ -128,7 +126,7 @@ appI.controller('ngcontrollerTiposIngreso', function ($scope, ngservice, Operaci
     $scope.EditarTiposIngreso = EditarTiposIngreso;
     $scope.CargarDatosTiposIngreso = CargarDatosTiposIngreso;
 
-    //Función para cargar todos los registros de tipos de deducción
+    //Función para cargar todos los registros de tipos de ingreso
     function CargarTiposIngreso() {
         var promise = ngservice.getTiposIngreso();
         promise.then(function (resp) {
@@ -140,7 +138,7 @@ appI.controller('ngcontrollerTiposIngreso', function ($scope, ngservice, Operaci
         });
     };
 
-    //Función para crear un tipo de deducción
+    //Función para crear un tipo de ingreso
     function CrearTiposIngreso() {
         CargarDatosTiposIngreso();
         console.log($scope.DatosTiposIngreso);
@@ -153,7 +151,7 @@ appI.controller('ngcontrollerTiposIngreso', function ($scope, ngservice, Operaci
         });
     };
 
-    //Función para editar un tipo de deducción
+    //Función para editar un tipo de ingreso
     function EditarTiposIngreso() {
         CargarDatosTiposIngreso();
         console.log($scope.DatosCrearTiposIngreso);
@@ -179,7 +177,7 @@ appI.controller('ngcontrollerTiposIngreso', function ($scope, ngservice, Operaci
         
     };
 
-    //Function para cargar registros de nómina según número de documento
+    //Function para cargar datos de un tipo de ingreso
     function getUniqueTiposIngreso() {
         var promise = ngservice.getUniqueTiposIngreso($scope.SelectedNombre);
         promise.then(function (resp) {

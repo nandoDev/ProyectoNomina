@@ -177,6 +177,7 @@ namespace ProyectoNomina.Controllers
                 return Json(matching.Select(m => new
                 {
                     id = m.cedula,
+                    value = m.cedula,
                 }));
             }
             catch (Exception ex)

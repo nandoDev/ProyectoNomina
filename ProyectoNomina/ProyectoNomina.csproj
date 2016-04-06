@@ -254,6 +254,7 @@
     <Compile Include="Models\ProyectoNominaDBContext.cs" />
     <Compile Include="Models\TiposDeduccion.cs" />
     <Compile Include="Models\TiposIngreso.cs" />
+    <Compile Include="Models\TiposIngresoDTO.cs" />
     <Compile Include="Models\Transacciones.cs" />
     <Compile Include="Models\transaccionesDTO.cs" />
     <Compile Include="Models\Usuarios.cs" />

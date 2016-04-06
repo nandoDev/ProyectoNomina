@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ProyectoNomina.Models;
+using System.Diagnostics;
 
 namespace ProyectoNomina.Controllers
 {
@@ -21,9 +22,14 @@ namespace ProyectoNomina.Controllers
         }
 
         // GET: api/TiposDeduccion
-        public IEnumerable<TiposIngreso> GetTiposIngreso()
+        public IHttpActionResult GetTiposIngreso()
         {
-            return db.TiposIngreso.AsEnumerable();
+            List<TiposIngresoDTO> tiposIngresoView = new List<TiposIngresoDTO>();
+            var Result = db.TiposIngreso.Select(u=> new {u.idTiposIngreso,
+                                                        u.nombre,
+                                                        u.dependeDeSalario,
+                                                        u.estado });
+                return Ok(Result);
         }
 
         // GET: api/TiposIngreso/5
